@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>黑胶唱片·灵韵播放器 | 动态播放列表 + NFC完整链接</title>
+  <title>黑胶唱片 · 我只在乎你 & 稻香</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -32,7 +32,6 @@
       box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       padding: 1.8rem 1.5rem 2rem;
-      transition: all 0.3s ease;
     }
 
     .vinyl-section {
@@ -173,7 +172,6 @@
       transform: scale(0.94);
     }
 
-    .custom-panel,
     .playlist-section {
       background: rgba(10, 12, 22, 0.6);
       border-radius: 2rem;
@@ -240,11 +238,6 @@
       text-overflow: ellipsis;
     }
 
-    .song-meta {
-      font-size: 0.65rem;
-      color: #b9ae8c;
-    }
-
     .now-playing-tag {
       font-size: 0.6rem;
       background: #f5c54230;
@@ -253,83 +246,6 @@
       color: #f5c542;
       margin-left: 8px;
       white-space: nowrap;
-    }
-
-    .playlist-actions {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .del-song-btn {
-      background: none;
-      border: none;
-      color: #bb9a6e;
-      font-size: 0.9rem;
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 30px;
-      transition: 0.2s;
-    }
-
-    .del-song-btn:hover {
-      color: #ffaa66;
-      transform: scale(1.1);
-    }
-
-    .input-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-      align-items: center;
-    }
-
-    .input-group input,
-    .input-group .file-label {
-      flex: 1;
-      background: #2c2f3e;
-      border: none;
-      padding: 10px 14px;
-      border-radius: 50px;
-      color: #f0e6cf;
-      font-size: 0.8rem;
-      outline: none;
-      border: 1px solid #4a4e6b;
-    }
-
-    .input-group input:focus {
-      border-color: #f5c542;
-    }
-
-    .file-label {
-      background: #3d3f55;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-
-    input[type="file"] {
-      display: none;
-    }
-
-    .small-btn {
-      background: #f5c542;
-      border: none;
-      padding: 8px 18px;
-      border-radius: 40px;
-      font-weight: bold;
-      color: #1e1f2c;
-      cursor: pointer;
-      font-size: 0.75rem;
-      transition: 0.2s;
-    }
-
-    .small-btn:hover {
-      background: #ffdf8c;
-      transform: scale(0.97);
     }
 
     .nfc-section {
@@ -408,54 +324,23 @@
       pointer-events: none;
     }
 
-    .guide-text {
-      background: #00000030;
-      border-radius: 1rem;
-      padding: 0.7rem;
-      margin-top: 0.8rem;
-      font-size: 0.65rem;
-      color: #ccc2aa;
-      line-height: 1.4;
-    }
-
     @media (max-width: 480px) {
-      .player-container {
-        padding: 1.2rem;
-      }
-
-      .record-wrapper {
-        width: 180px;
-        height: 180px;
-      }
-
-      .cover-frame {
-        width: 130px;
-        height: 130px;
-      }
-
-      .ctrl-btn {
-        width: 48px;
-        height: 48px;
-        font-size: 1.4rem;
-      }
-
-      .playlist-container {
-        max-height: 180px;
-      }
-
-      .song-name {
-        font-size: 0.75rem;
-      }
+      .player-container { padding: 1.2rem; }
+      .record-wrapper { width: 180px; height: 180px; }
+      .cover-frame { width: 130px; height: 130px; }
+      .ctrl-btn { width: 48px; height: 48px; font-size: 1.4rem; }
+      .playlist-container { max-height: 180px; }
+      .song-name { font-size: 0.75rem; }
     }
   </style>
 </head>
 <body>
 <div class="player-container">
-  <!-- 黑胶区 -->
+  <!-- 黑胶唱片区域 -->
   <div class="vinyl-section">
     <div class="record-wrapper" id="recordDisc">
       <div class="cover-frame">
-        <img id="coverImage" src="https://placehold.co/400/2c2e3f/c9b982?text=🎵+COVER" alt="album cover">
+        <img id="coverImage" src="https://cdn.jsdelivr.net/gh/nihao-create/my-music@main/%E5%B0%81%E9%9D%A2.jpg" alt="album cover">
       </div>
     </div>
     <div class="tonearm"></div>
@@ -465,7 +350,11 @@
   <div class="progress-area">
     <div class="time-info"><span id="currentTime">0:00</span><span id="durationTime">0:00</span></div>
     <input type="range" id="progressSlider" value="0" step="0.01">
-    <div class="volume-slider"><i class="fas fa-volume-down"></i><input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.7"><i class="fas fa-volume-up"></i></div>
+    <div class="volume-slider">
+      <i class="fas fa-volume-down"></i>
+      <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="0.7">
+      <i class="fas fa-volume-up"></i>
+    </div>
   </div>
 
   <!-- 播放按钮 -->
@@ -473,61 +362,38 @@
     <div class="ctrl-btn" id="playPauseBtn"><i class="fas fa-play"></i></div>
   </div>
 
-  <!-- 播放列表 -->
+  <!-- 固定播放列表（两首歌曲） -->
   <div class="playlist-section">
     <div class="section-title">
       <span><i class="fas fa-list-ul"></i> 播放列表 · 点击切换</span>
-      <div><button id="clearPlaylistBtn" class="small-btn" style="background:#4a4e6b; color:white; padding:4px 12px;">清空</button><span id="playlistCount" style="margin-left:8px;">0首</span></div>
+      <span id="playlistCount" style="font-size:0.6rem;">2首</span>
     </div>
     <div class="playlist-container" id="playlistContainer">
-      <div style="text-align:center; color:#b9ae8c; padding:10px;">✨ 添加歌曲开始欣赏</div>
+      <!-- 动态渲染两首歌，无删除/编辑按钮 -->
     </div>
   </div>
 
-  <!-- 自定义面板：封面/音频 -->
-  <div class="custom-panel">
-    <div class="section-title"><i class="fas fa-image"></i> 唱片封面自定义</div>
-    <div class="input-group">
-      <input type="text" id="coverUrlInput" placeholder="图片网络地址 (https://...)" value="">
-      <label class="file-label" for="coverUpload"><i class="fas fa-upload"></i> 本地上传</label>
-      <input type="file" id="coverUpload" accept="image/jpeg,image/png,image/webp">
-      <button class="small-btn" id="applyCoverBtn">应用</button>
-    </div>
-
-    <div class="section-title"><i class="fas fa-music"></i> 音频源 & 播放列表管理</div>
-    <div class="input-group">
-      <input type="text" id="audioUrlInput" placeholder="网络音频地址 (https://...)" value="">
-      <label class="file-label" for="audioUpload"><i class="fas fa-file-audio"></i> 上传本地音乐</label>
-      <input type="file" id="audioUpload" accept="audio/mpeg,audio/mp3,audio/wav,audio/ogg,audio/m4a">
-      <button class="small-btn" id="addNetToPlaylistBtn">添加到列表</button>
-    </div>
-    <div class="input-group">
-      <button class="small-btn" id="resetDefaultBtn" style="background:#4a4e6b; color:white;">恢复示例列表</button>
-      <button class="small-btn" id="applyAudioBtn">加载当前音源</button>
-    </div>
-
-    <!-- 引导教程 -->
-    <div class="guide-text">
-      <i class="fas fa-question-circle" style="color:#f5c542;"></i> <strong>如何让本地音乐变成网络链接？</strong><br>
-      ① 将音乐上传至 GitHub 公开仓库 或 Cloudflare R2 <br>
-      ② 获取直链 (https://开头) → 复制到上方“网络音频地址”框 → 点“添加到列表”<br>
-      ③ 此时自动生成完整NFC链接，点击下方按钮复制后写入NFC标签。
-    </div>
-  </div>
-
-  <!-- NFC 写入模块（修复：完整显示+可靠复制） -->
+  <!-- NFC 写入模块（基于当前播放的歌曲和封面自动生成链接） -->
   <div class="nfc-section">
     <div class="nfc-header"><i class="fas fa-microchip"></i> 🔗 NFC写入链接（基于当前网络音源）</div>
-    <div class="nfc-link-box" id="nfcLinkDisplay">⚠️ 未配置网络音频</div>
+    <div class="nfc-link-box" id="nfcLinkDisplay">⚠️ 未检测到网络音频</div>
     <button class="copy-btn" id="copyNfcLinkBtn"><i class="far fa-copy"></i> 复制完整链接（用于NFC工具）</button>
   </div>
-  <p style="font-size:0.55rem; text-align:center; margin-top:8px; color:#b9ae8c;">💡 本地音乐仅当前设备有效，网络链接可写入NFC且任何访客可播。</p>
+  <p style="font-size:0.55rem; text-align:center; margin-top:8px; color:#b9ae8c;">💡 触碰NFC即可打开本页并播放当前选中的歌曲</p>
 </div>
 
 <script>
-  // ---------- DOM ----------
+  // 固定的两首歌曲（使用您的网络链接）
+  const FIXED_SONGS = [
+    { name: "🎵 我只在乎你（群像）", url: "https://cdn.jsdelivr.net/gh/nihao-create/my-music@main/%E6%88%91%E5%8F%AA%E5%9C%A8%E4%B9%8E%E4%BD%A0%EF%BC%88%E7%BE%A4%E5%83%8F%EF%BC%89.m4a", cover: "https://cdn.jsdelivr.net/gh/nihao-create/my-music@main/%E5%B0%81%E9%9D%A2.jpg" },
+    { name: "🎵 稻香（群像）", url: "https://cdn.jsdelivr.net/gh/nihao-create/my-music@main/%E7%A8%BB%E9%A6%99%EF%BC%88%E7%BE%A4%E5%83%8F%EF%BC%89.m4a", cover: "https://cdn.jsdelivr.net/gh/nihao-create/my-music@main/%E5%B0%81%E9%9D%A2.jpg" }
+  ];
+
+  // DOM 元素
   const audioElement = new Audio();
   let isPlaying = false;
+  let currentSongIndex = 0;   // 默认第一首
+
   const playPauseBtn = document.getElementById('playPauseBtn');
   const playIcon = playPauseBtn.querySelector('i');
   const progressSlider = document.getElementById('progressSlider');
@@ -536,25 +402,11 @@
   const volumeSlider = document.getElementById('volumeControl');
   const coverImage = document.getElementById('coverImage');
   const recordDisc = document.getElementById('recordDisc');
-  const coverUrlInput = document.getElementById('coverUrlInput');
-  const coverUpload = document.getElementById('coverUpload');
-  const applyCoverBtn = document.getElementById('applyCoverBtn');
-  const audioUrlInput = document.getElementById('audioUrlInput');
-  const audioUpload = document.getElementById('audioUpload');
-  const applyAudioBtn = document.getElementById('applyAudioBtn');
-  const resetDefaultBtn = document.getElementById('resetDefaultBtn');
+  const playlistContainer = document.getElementById('playlistContainer');
   const nfcLinkDisplay = document.getElementById('nfcLinkDisplay');
   const copyNfcLinkBtn = document.getElementById('copyNfcLinkBtn');
-  const playlistContainer = document.getElementById('playlistContainer');
-  const playlistCountSpan = document.getElementById('playlistCount');
-  const addNetToPlaylistBtn = document.getElementById('addNetToPlaylistBtn');
-  const clearPlaylistBtn = document.getElementById('clearPlaylistBtn');
 
-  // ---------- 播放列表数据 ----------
-  let playlist = [];          // { name, audioUrl, coverUrl }
-  let currentSongIndex = -1;
-
-  // ---------- 辅助函数 ----------
+  // 辅助函数
   function formatTime(seconds) {
     if (isNaN(seconds)) return "0:00";
     const mins = Math.floor(seconds / 60);
@@ -606,16 +458,18 @@
     setTimeout(() => { toast.style.opacity = '0'; }, 2000);
   }
 
-  // 加载音频 (autoPlay: 是否自动播放)
-  function loadAudioFromUrl(url, autoPlay = false) {
-    if (!url) return false;
-    const wasPlaying = isPlaying;
+  // 加载歌曲（自动播放可选）
+  function loadSongByIndex(index, autoPlay = false) {
+    if (index < 0 || index >= FIXED_SONGS.length) return;
+    const song = FIXED_SONGS[index];
+    currentSongIndex = index;
     audioElement.pause();
-    audioElement.src = url;
+    audioElement.src = song.url;
     audioElement.load();
-    if (autoPlay || wasPlaying) {
+    if (song.cover) coverImage.src = song.cover;
+    if (autoPlay) {
       audioElement.play().catch(err => {
-        console.warn("自动播放受限", err);
+        console.warn("自动播放被阻止", err);
         showToast("点击播放按钮手动播放");
         isPlaying = false;
         updatePlayPauseUI();
@@ -624,43 +478,46 @@
       isPlaying = false;
       updatePlayPauseUI();
     }
-    return true;
+    // 更新 NFC 链接（基于新歌曲）
+    updateNfcLink();
+    renderPlaylist();
   }
 
-  function setCoverImage(src) {
-    if (src && src.trim() !== "") {
-      coverImage.src = src;
-    } else {
-      coverImage.src = "https://placehold.co/400/2c2e3f/c9b982?text=🎵+COVER";
+  // 播放/暂停逻辑
+  function handlePlayPause() {
+    if (!audioElement.src) {
+      loadSongByIndex(0, true);
+      return;
     }
+    if (isPlaying) audioElement.pause();
+    else audioElement.play().catch(e => showToast("请检查音源"));
   }
 
-  // **** 核心：生成NFC链接（完整显示，不截断）****
+  // 生成 NFC 链接：基于当前页面地址 + 当前歌曲的音频和封面参数
   function updateNfcLink() {
-    const currentAudioNet = audioUrlInput.value.trim();
-    const currentCoverNet = coverUrlInput.value.trim();
+    const currentSong = FIXED_SONGS[currentSongIndex];
+    if (!currentSong) return;
+    const audioUrl = currentSong.url;
+    const coverUrl = currentSong.cover;
     const baseUrl = window.location.href.split('?')[0].split('#')[0];
     const params = new URLSearchParams();
-    let hasValid = false;
-    if (currentAudioNet && (currentAudioNet.startsWith('http://') || currentAudioNet.startsWith('https://'))) {
-      params.set('audio', encodeURIComponent(currentAudioNet));
-      hasValid = true;
+    if (audioUrl && (audioUrl.startsWith('http://') || audioUrl.startsWith('https://'))) {
+      params.set('audio', encodeURIComponent(audioUrl));
     }
-    if (currentCoverNet && (currentCoverNet.startsWith('http://') || currentCoverNet.startsWith('https://'))) {
-      params.set('cover', encodeURIComponent(currentCoverNet));
+    if (coverUrl && (coverUrl.startsWith('http://') || coverUrl.startsWith('https://'))) {
+      params.set('cover', encodeURIComponent(coverUrl));
     }
-    if (hasValid) {
+    if (params.has('audio')) {
       const fullUrl = baseUrl + '?' + params.toString();
-      // 完整显示，不截断
       nfcLinkDisplay.innerText = fullUrl;
       nfcLinkDisplay.setAttribute('data-fullurl', fullUrl);
     } else {
-      nfcLinkDisplay.innerText = "⚠️ 请在上方输入有效的网络音频地址 (https://) 以生成NFC链接";
+      nfcLinkDisplay.innerText = "⚠️ 当前歌曲无有效网络地址";
       nfcLinkDisplay.setAttribute('data-fullurl', '');
     }
   }
 
-  // 复制降级方案 (兼容所有浏览器)
+  // 复制降级方案
   function fallbackCopyTextToClipboard(text) {
     const textarea = document.createElement('textarea');
     textarea.value = text;
@@ -672,93 +529,64 @@
     try {
       success = document.execCommand('copy');
     } catch (err) {
-      console.error("fallback copy error", err);
+      console.error(err);
     }
     document.body.removeChild(textarea);
     return success;
   }
 
-  // 复制按钮事件 (现代 + 降级)
   function bindCopyEvent() {
     copyNfcLinkBtn.addEventListener('click', () => {
       const fullUrl = nfcLinkDisplay.getAttribute('data-fullurl');
       if (fullUrl && fullUrl !== '') {
-        // 优先使用现代 Clipboard API
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(fullUrl).then(() => {
-            showToast("✅ NFC链接已复制！可粘贴到 NFC Tools 等应用");
-          }).catch(err => {
-            console.warn("Clipboard API failed, using fallback", err);
-            if (fallbackCopyTextToClipboard(fullUrl)) {
-              showToast("✅ 链接已复制（兼容模式）");
-            } else {
-              showToast("❌ 复制失败，请手动选中链接文本复制");
-            }
+            showToast("✅ NFC链接已复制！可写入NFC标签");
+          }).catch(() => {
+            if (fallbackCopyTextToClipboard(fullUrl)) showToast("✅ 链接已复制");
+            else showToast("❌ 复制失败，请手动选择链接");
           });
         } else {
-          // 降级
-          if (fallbackCopyTextToClipboard(fullUrl)) {
-            showToast("✅ 链接已复制");
-          } else {
-            showToast("❌ 手动复制下方链接即可");
-          }
+          if (fallbackCopyTextToClipboard(fullUrl)) showToast("✅ 链接已复制");
+          else showToast("❌ 手动复制下方链接");
         }
       } else {
-        showToast("请先配置网络音频地址 (https://) 生成链接");
+        showToast("请确保当前歌曲是网络音频");
       }
     });
   }
 
-  // 渲染播放列表UI
+  // 渲染固定播放列表（无删除按钮，无清空功能）
   function renderPlaylist() {
-    if (playlist.length === 0) {
-      playlistContainer.innerHTML = '<div style="text-align:center; color:#b9ae8c; padding:10px;">🎵 暂无歌曲，请上传本地音乐或添加网络地址</div>';
-      playlistCountSpan.innerText = '0首';
-      return;
-    }
-    playlistCountSpan.innerText = playlist.length + '首';
     let html = '';
-    playlist.forEach((song, idx) => {
+    FIXED_SONGS.forEach((song, idx) => {
       const isActive = (idx === currentSongIndex);
       const activeClass = isActive ? 'active-song' : '';
-      const typeLabel = song.audioUrl.startsWith('blob:') ? '本地' : (song.audioUrl.startsWith('http') ? '在线' : '其他');
       html += `
         <div class="playlist-item ${activeClass}" data-index="${idx}">
           <div class="song-info">
-            <div class="song-name">${escapeHtml(song.name) || '未命名'}</div>
-            <div class="song-meta">${typeLabel}</div>
+            <div class="song-name">${escapeHtml(song.name)}</div>
           </div>
-          <div class="playlist-actions">
-            ${isActive ? '<span class="now-playing-tag"><i class="fas fa-play"></i> 播放中</span>' : ''}
-            <button class="del-song-btn" data-delidx="${idx}"><i class="fas fa-trash-alt"></i></button>
-          </div>
+          ${isActive ? '<span class="now-playing-tag"><i class="fas fa-play"></i> 播放中</span>' : ''}
         </div>
       `;
     });
     playlistContainer.innerHTML = html;
-    // 点击切换歌曲
+    // 绑定点击切换事件
     document.querySelectorAll('.playlist-item').forEach(item => {
       const idx = parseInt(item.dataset.index);
       if (!isNaN(idx)) {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.del-song-btn')) return;
-          switchToSong(idx);
+        item.addEventListener('click', () => {
+          if (idx === currentSongIndex) return;
+          loadSongByIndex(idx, true);
         });
       }
-    });
-    // 删除按钮
-    document.querySelectorAll('.del-song-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const idx = parseInt(btn.dataset.delidx);
-        if (!isNaN(idx)) removeSongFromPlaylist(idx);
-      });
     });
   }
 
   function escapeHtml(str) {
     if (!str) return '';
-    return str.replace(/[&<>]/g, function (m) {
+    return str.replace(/[&<>]/g, function(m) {
       if (m === '&') return '&amp;';
       if (m === '<') return '&lt;';
       if (m === '>') return '&gt;';
@@ -766,138 +594,34 @@
     });
   }
 
-  // 切换歌曲核心
-  function switchToSong(index) {
-    if (index < 0 || index >= playlist.length) return;
-    const song = playlist[index];
-    if (!song.audioUrl) {
-      showToast("音源无效");
-      return;
-    }
-    currentSongIndex = index;
-    loadAudioFromUrl(song.audioUrl, true);
-    if (song.coverUrl) {
-      setCoverImage(song.coverUrl);
-      coverUrlInput.value = song.coverUrl;
-    }
-    if (song.audioUrl && (song.audioUrl.startsWith('http://') || song.audioUrl.startsWith('https://'))) {
-      audioUrlInput.value = song.audioUrl;
-    }
-    updateNfcLink();
-    renderPlaylist();
-    showToast(`🎵 播放: ${song.name}`);
-    audioElement.play().catch(e => console.log("自动播放需交互"));
-  }
-
-  // 添加歌曲
-  function addSongToPlaylist(name, audioUrl, coverUrl = '') {
-    if (!audioUrl) return false;
-    playlist.push({
-      name: name || (audioUrl.split('/').pop() || '未知歌曲'),
-      audioUrl: audioUrl,
-      coverUrl: coverUrl || ''
-    });
-    renderPlaylist();
-    showToast(`✅ 已添加「${name}」到播放列表`);
-    return true;
-  }
-
-  function removeSongFromPlaylist(index) {
-    if (index < 0 || index >= playlist.length) return;
-    const removed = playlist[index];
-    playlist.splice(index, 1);
-    if (playlist.length === 0) {
-      currentSongIndex = -1;
-      audioElement.pause();
-      isPlaying = false;
-      updatePlayPauseUI();
-    } else {
-      if (currentSongIndex === index) {
-        if (index < playlist.length) currentSongIndex = index;
-        else if (playlist.length > 0) currentSongIndex = playlist.length - 1;
-        else currentSongIndex = -1;
-        if (currentSongIndex !== -1) switchToSong(currentSongIndex);
-        else {
-          audioElement.pause();
-          isPlaying = false;
-          updatePlayPauseUI();
-        }
-      } else if (currentSongIndex > index) {
-        currentSongIndex--;
-      }
-    }
-    renderPlaylist();
-    showToast(`🗑️ 已移除「${removed.name || '歌曲'}」`);
-  }
-
-  function clearPlaylist() {
-    if (playlist.length === 0) return;
-    playlist = [];
-    currentSongIndex = -1;
-    audioElement.pause();
-    isPlaying = false;
-    updatePlayPauseUI();
-    renderPlaylist();
-    showToast("播放列表已清空");
-  }
-
-  // 示例列表（网络音乐，可播放）
-  function initExamplePlaylist() {
-    playlist = [];
-    const examples = [
-      { name: "🎸 灵动序曲 (SoundHelix)", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", coverUrl: "https://placehold.co/600/2d2f44/e2c28b?text=Rock" },
-      { name: "🌿 钢琴叙事曲", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", coverUrl: "https://placehold.co/600/2a2e40/d9bc7a?text=Piano" },
-      { name: "🌙 电子氛围", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", coverUrl: "https://placehold.co/600/282c3e/cfb87c?text=Ambient" }
-    ];
-    examples.forEach(ex => playlist.push({ name: ex.name, audioUrl: ex.audioUrl, coverUrl: ex.coverUrl }));
-    if (playlist.length) {
-      currentSongIndex = 0;
-      const first = playlist[0];
-      loadAudioFromUrl(first.audioUrl, false);
-      setCoverImage(first.coverUrl);
-      audioUrlInput.value = first.audioUrl;
-      coverUrlInput.value = first.coverUrl;
-    }
-    renderPlaylist();
-    updateNfcLink();
-    showToast("已加载示例播放列表");
-  }
-
-  // 本地上传（自动加入列表，blob链接仅供本地）
-  function handleLocalAudioUpload(file) {
-    if (!file || !file.type.startsWith('audio/')) {
-      showToast("请选择音频文件");
-      return;
-    }
-    const objectUrl = URL.createObjectURL(file);
-    let fileName = file.name.replace(/\.[^/.]+$/, "");
-    if (fileName.length > 40) fileName = fileName.substring(0, 37) + '...';
-    addSongToPlaylist(fileName, objectUrl, coverUrlInput.value.trim());
-    const newIdx = playlist.length - 1;
-    switchToSong(newIdx);
-    audioUrlInput.value = objectUrl;
-    showToast("本地音乐已添加（注意：仅本机可播放，NFC请使用网络链接）");
-  }
-
-  // 从URL参数加载（支持NFC打开）
+  // 从 URL 参数加载（支持 NFC 触碰打开）
   function loadFromUrlParams() {
     const urlParams = new URLSearchParams(window.location.search);
     const audioParam = urlParams.get('audio');
     const coverParam = urlParams.get('cover');
-    if (audioParam && (audioParam.startsWith('http://') || audioParam.startsWith('https://'))) {
+    if (audioParam) {
       const decodedAudio = decodeURIComponent(audioParam);
-      loadAudioFromUrl(decodedAudio, false);
-      audioUrlInput.value = decodedAudio;
-      addSongToPlaylist(decodedAudio.split('/').pop() || 'NFC歌曲', decodedAudio, coverParam ? decodeURIComponent(coverParam) : '');
-    }
-    if (coverParam && (coverParam.startsWith('http://') || coverParam.startsWith('https://'))) {
-      setCoverImage(decodeURIComponent(coverParam));
-      coverUrlInput.value = decodeURIComponent(coverParam);
+      // 查找匹配的歌曲索引
+      const foundIndex = FIXED_SONGS.findIndex(s => s.url === decodedAudio);
+      if (foundIndex !== -1) {
+        loadSongByIndex(foundIndex, false);
+      } else {
+        // 外部传入的音频不在预设列表中，仍然尝试加载并临时使用（但不影响固定列表）
+        audioElement.src = decodedAudio;
+        audioElement.load();
+        if (coverParam) coverImage.src = decodeURIComponent(coverParam);
+        isPlaying = false;
+        updatePlayPauseUI();
+        // 注意：此时当前播放歌曲索引不变，但 NFC 链接仍基于固定列表的第一首？为了不混乱，保持固定列表高亮不变
+      }
+    } else {
+      // 默认加载第一首
+      loadSongByIndex(0, false);
     }
     updateNfcLink();
   }
 
-  // ----- 事件绑定 -----
+  // 事件绑定
   audioElement.addEventListener('play', () => { isPlaying = true; updatePlayPauseUI(); });
   audioElement.addEventListener('pause', () => { isPlaying = false; updatePlayPauseUI(); });
   audioElement.addEventListener('timeupdate', updateProgress);
@@ -906,30 +630,14 @@
   audioElement.addEventListener('error', () => { showToast("音频加载失败"); isPlaying = false; updatePlayPauseUI(); });
   progressSlider.addEventListener('input', (e) => { if (audioElement.duration && !isNaN(audioElement.duration)) audioElement.currentTime = (e.target.value / 100) * audioElement.duration; updateProgress(); });
   volumeSlider.addEventListener('input', (e) => { audioElement.volume = e.target.value; });
-  audioElement.volume = 0.7;
-  playPauseBtn.addEventListener('click', () => { if (audioElement.src && audioElement.src !== '') { if (isPlaying) audioElement.pause(); else audioElement.play().catch(e => showToast("请检查音源")); } else showToast("请先从播放列表选择歌曲"); });
+  playPauseBtn.addEventListener('click', handlePlayPause);
 
-  audioUpload.addEventListener('change', (e) => { if (e.target.files[0]) handleLocalAudioUpload(e.target.files[0]); audioUpload.value = ''; });
-  addNetToPlaylistBtn.addEventListener('click', () => {
-    let url = audioUrlInput.value.trim();
-    let cover = coverUrlInput.value.trim();
-    if (!url) { showToast("请输入音频网络地址"); return; }
-    let name = prompt("歌曲名称", url.split('/').pop() || "网络歌曲");
-    if (name === null) name = "网络歌曲";
-    addSongToPlaylist(name, url, cover);
-  });
-  clearPlaylistBtn.addEventListener('click', clearPlaylist);
-  resetDefaultBtn.addEventListener('click', initExamplePlaylist);
-  applyAudioBtn.addEventListener('click', () => { let url = audioUrlInput.value.trim(); if (url) loadAudioFromUrl(url, false); else showToast("请输入音频地址"); updateNfcLink(); });
-  applyCoverBtn.addEventListener('click', () => { let url = coverUrlInput.value.trim(); if (url) setCoverImage(url); else showToast("请输入图片地址"); updateNfcLink(); });
-  coverUpload.addEventListener('change', (e) => { if (e.target.files[0] && e.target.files[0].type.startsWith('image/')) { const objUrl = URL.createObjectURL(e.target.files[0]); setCoverImage(objUrl); coverUrlInput.value = objUrl; showToast("封面已更换"); } });
-  audioUrlInput.addEventListener('input', updateNfcLink);
-  coverUrlInput.addEventListener('input', updateNfcLink);
+  audioElement.volume = 0.7;
+  bindCopyEvent();
 
   // 初始化
-  initExamplePlaylist();
+  renderPlaylist();
   loadFromUrlParams();
-  bindCopyEvent();     // 绑定复制（修复）
   toggleSpin(false);
   window.addEventListener('load', () => { setDuration(); updateNfcLink(); });
 </script>
